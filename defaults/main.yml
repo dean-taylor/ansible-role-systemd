@@ -1,0 +1,4 @@
+---
+# defaults file for systemd
+#
+systemd_resolved_MulticastDNS: false     # false|true|resolve

@@ -1,0 +1,23 @@
+---
+# tasks file for systemd
+- name: systemd-resolved
+  ansible.builtin.template:
+    dest: /etc/systemd/resolved.conf
+    src: etc/systemd/resolved.conf.j2
+  register: systemd_resolved
+- name: restart systemd-resolved.service
+  ansible.builtin.systemd:
+    name: systemd-resolved.service
+    state: restarted
+  when: systemd_resolved.changed
+
+- name: systemd-networkd
+  ansible.builtin.template:
+    dest: /etc/systemd/networkd.conf
+    src: etc/systemd/networkd.conf.j2
+  register: systemd_networkd
+- name: restart systemd-networkd.service
+  ansible.builtin.systemd:
+    name: systemd-networkd.service
+    state: restarted
+  when: systemd_networkd.changed
