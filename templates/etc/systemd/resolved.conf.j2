@@ -16,7 +16,11 @@
 #FallbackDNS=
 #Domains=
 #LLMNR=no
-MulticastDNS={{ systemd_multicastDNS | lower }}
+{% if systemd_multicastDNS is defined %}
+MulticastDNS=yes
+{% else %}
+#MulticastDNS=no
+{% endif %}
 #DNSSEC=no
 #DNSOverTLS=no
 #Cache=yes
