@@ -7,11 +7,11 @@
   notify:
     - Restart systemd-resolved.service
 
-- name: /etc/systemd/network/10-netplan-{{ item.interface }}.network.d
+- name: /etc/systemd/network/10-netplan-IF.network.d
   ansible.builtin.file:
     path: /etc/systemd/network/10-netplan-{{ item.interface }}.network.d
     state: directory
-  loop: "{{ systemd_multicastDNS }}"
+  loop: "{{ systemd_mDNS }}"
 - name: mDNS
   ansible.builtin.copy:
     dest: /etc/systemd/network/10-netplan-{{ item.interface }}.network.d/mDNS.conf
@@ -20,5 +20,5 @@
       MulticastDNS={{ item.state | lower }}
   notify:
     - Restart systemd-networkd.service
-  loop: "{{ systemd_multicastDNS }}"
+  loop: "{{ systemd_mDNS }}"
 

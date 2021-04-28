@@ -1,7 +1,6 @@
 ---
 # defaults file for systemd
 #
-#systemd_multicastDNS: false     # false|true|resolve
-systemd_multicastDNS: []
+mDNS: []
 #  - interface: enp0s8
 #    state: true            # false|true|resolve
